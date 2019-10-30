@@ -1,0 +1,57 @@
+<div class="container">
+
+    <div class="alert alert-warning" *ngIf="errorInfo!=''" role="alert">{{errorInfo}}</div>
+
+
+
+    <div>
+        <div>
+              <div class="btn-group">
+                <select class="form-control" name="type" [(ngModel)]="orderType" (change)="onChangeOrderType()">
+                  <option value="Default">Default</option>
+                  <option value="Product Name">Product Name</option>
+                  <option value="Days Left">Days Left</option>
+                  <option value="Price">Price</option>
+                  <option value="Shipping Cost">Shipping Cost</option>
+                </select>
+              </div>
+              
+              <div class="btn-group" style="margin-left:20px;">
+                <select class="form-control" name="order" [(ngModel)]="orderSeq" [disabled]="orderType=='Default'" (change)="onChangeOrderSeq()">
+                  <option value="Ascending">Ascending</option>
+                  <option value="Descending">Descending</option>
+                </select>
+              </div>
+        </div>
+
+        <div>
+          <div *ngFor="let item of displayItems">
+            <div class="row item">
+              <div class="img-div">
+                <img [src]="item[0]" class="productImg">
+              </div>
+                
+                <div class="img-text">
+                    <a [href]="item[2]" target="_blank" class="green">{{item[1]}}</a>
+                    <p class="price">Price: ${{item[3]}}</p>
+                    <p class="shippingcost">Shipping Cost: ${{item[4]}}</p>
+                    <p class="dayleft">Day Left: {{item[5]}}</p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="show">
+            <button class="btn dark-bg text-white" (click)="onClickShow()">{{show}}</button>
+        </div>
+        
+
+
+    </div>
+
+    
+
+
+</div>

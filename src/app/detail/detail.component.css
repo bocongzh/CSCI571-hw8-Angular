@@ -1,0 +1,73 @@
+.title{
+    text-align: center;
+    margin-top:20px;
+}
+
+.greenButton{
+    color: green;
+    background-color:rgba(0,0,0,0);
+    box-shadow: none;
+    border:none;
+}
+
+.img-thumbnail{
+    background: black;
+}
+
+.table-dark{
+    background-color: rgba(33, 36, 41);
+    margin-top: 1px;
+}
+
+.nav-pills .nav-link:not(.active) {
+    background-color: white;
+    color: black;
+}
+
+.nav-pills .nav-link {
+    background-color: rgba(33, 36, 41);
+    color: white;
+}
+
+ table th{
+    white-space:nowrap;
+    min-width: 200px;
+}
+
+.yellow{
+    color: yellow;
+}
+
+.blue{
+    color: blue;
+}
+
+.turquoise{
+    color: turquoise;
+}
+
+.purple{
+    color: purple;
+}
+
+.green{
+    color: green;
+}
+
+.red{
+    color: red;
+}
+
+.silver{
+    color: silver;
+}
+
+.modal-body{
+    text-align: center;
+    border-color: black;
+    border-width: 30px;
+}
+
+.gold{
+    color: goldenrod;
+}

@@ -1,0 +1,115 @@
+<div class="container dark-bg text-white">
+    <h2 style="text-align: center; padding-top: 20px;">Product Search</h2>
+    <form>
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-md-2"></div>
+          <label class="col-md-2 form-required" style="padding: 0; margin: 6px; margin-left: 0;">Keyword<span class="required">*</span></label>
+          <div class="col-md-5" style="padding:0;">
+              <input type="text" class="form-control" [ngClass]="{'has-error': keywordErr}" name="keyword" placeholder="Enter Product Name (eg. iPhone 8)" required="required" [(ngModel)]="keyword" (blur)="onBlurKeyword()">
+              <p class="required" [hidden]="!keywordErr">Please enter a keyword</p>
+          </div>
+          <!-- <input type="text" class="form-control col-md-5" name="keyword" placeholder="Enter Product Name (eg. iPhone 8)" required="required" [(ngModel)]="keyword"> -->
+        </div>
+      
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-2"></div>
+          <label class="col-md-2 form-required" style="padding: 0; margin: 6px; margin-left: 0;">Category</label>
+          <select class="form-control col-md-2" name="categories" [(ngModel)]="category">
+            <option *ngFor="let item of categories" [value]="item" name="category">{{item}}</option>
+          </select>
+        </div>
+      
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-2"></div>
+          <label class="col-md-2 form-required" style="padding: 0; margin: 6px; margin-left: 0;">Condition</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="new" [(ngModel)]="new">
+            <label class="form-check-label">New</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="used" [(ngModel)]="used">
+            <label class="form-check-label">Used</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="unspecified" [(ngModel)]="unspecified">
+            <label class="form-check-label">Unspecified</label>
+          </div>
+        </div>
+      
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-2"></div>
+          <label class="col-md-2 form-required" style="padding: 0; margin: 6px; margin-left: 0;">Shipping Options</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="localPickUp" [(ngModel)]="localPickUp">
+            <label class="form-check-label">Local Pickup</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="freeShipping" [(ngModel)]="freeShipping">
+            <label class="form-check-label">Free Shipping</label>
+          </div>
+        </div>
+      
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-2"></div>
+          <label class="col-md-2 form-required" style="padding: 0; margin: 6px; margin-left: 0;">Distance (Miles)</label>
+          <input type="text" class="form-control col-md-2" placeholder="10" name="distance" [(ngModel)]="distance">
+        </div>
+      
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-2"></div>
+          <label class="col-md-2 form-required" style="padding: 0; margin: 6px; margin-left: 0;">From<span class="required">*</span></label>
+          <div class="col-md-5 bg-green" style="padding: 0;">
+            <div class="form-check" style="margin-top: 6px;">
+              <input class="form-check-input" type="radio" name="radio" value="current" [(ngModel)]="from">
+                  <label class="form-check-label">Current Location</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radio" value="other" [(ngModel)]="from">
+                  <label class="form-check-label">Other. Please specify zip code:</label>
+            </div>
+            <div>
+                <input type="text" class="form-control" [ngClass]="{'has-error': zipErr}" name="zipCode" [disabled]="from=='current'" [(ngModel)]="zipCode" (blur)="onBlurZipcode()">
+                <p class="required" [hidden]="!zipErr">Please enter a zip code</p>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="row" style="margin-top: 10px; padding-bottom: 10px;">
+          <div class="col-md-2"></div>
+          <div class="col-md-5" style="padding: 0">
+            <button type="submit" class="btn btn-light" (click)="onSubmit()" [disabled]="disableSearch">
+              <span>
+                <i class="material-icons">search</i>Search
+              </span>
+            </button>
+            <button class="btn btn-light" style="margin-left: 30px;" (click)="onClear()">
+              <span>
+                <i class="material-icons md-36">clear_all</i>Clear
+              </span>
+            </button>
+          </div>
+        </div>	
+      </form>
+</div>
+
+
+<ul class="nav nav-pills justify-content-center" role="tablist" style="margin-top:20px;">
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="{active: selectResult}" href="#" (click)="onClickResult()">Result</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"  [ngClass]="{active: !selectResult}" href="#" (click)="onClickWishList()">Wish List</a>
+    </li>
+</ul>
+
+<div class="progress" *ngIf="!hideProgress" style="width:85%;margin:0 auto; margin-top: 20px;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+</div>
+
+<app-result #result  [hidden]="!selectResult"></app-result>
+
+<app-wishlist [hidden]="selectResult"></app-wishlist>
+
+
+<!-- <app-detail></app-detail> -->

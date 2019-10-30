@@ -1,0 +1,21 @@
+.nav-pills .nav-link:not(.active) {
+    background-color: white;
+    color: black;
+}
+
+.nav-pills .nav-link {
+    background-color: rgba(33, 36, 41);
+    color: white;
+}
+
+.dark-bg{
+    background-color: rgba(33, 36, 41);
+}
+
+.required{
+    color: red;
+}
+
+.has-error{
+    border-color: red;
+}

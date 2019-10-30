@@ -1,0 +1,131 @@
+<div class="container" style="padding:0">
+  <div class="title">
+      <h4>{{title}}</h4>
+  </div>
+
+  <div class="row">
+    <div class="col"><button type="button" class="btn btn-light" (click)="onClickList()">&lt; List</button></div>
+    <div class="col" style="text-align:right">
+      <a [href]="facebookShare" target="_blank" (click)="onClickShare()"><img style="width:50px;" src="https://en.facebookbrand.com/wp-content/uploads/2016/05/flogo_rgb_hex-brc-site-250.png"></a>
+      <button class="btn btn-light" (click)="onClickCart()"><i class="material-icons" [ngClass]="{'gold': shopcart=='remove_shopping_cart'}">{{shopcart}}</i></button>
+    </div>
+  </div>
+
+  <ul class="nav nav-pills justify-content-end" role="tablist" style="margin-top:20px;">
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': tab=='Product'}" href="#" (click)="onClickTab('Product')">Product</a></li>
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': tab=='Photos'}" href="#" (click)="onClickTab('Photos')">Photos</a></li>
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': tab=='Shipping'}" href="#" (click)="onClickTab('Shipping')">Shipping</a></li>
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': tab=='Seller'}" href="#" (click)="onClickTab('Seller')">Seller</a></li>
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': tab=='Similar Products'}" href="#" (click)="onClickTab('Similar Products')">Similar Products</a></li>
+  </ul>
+
+
+  <div *ngIf="tab=='Product'">
+      <table class="table table-striped table-dark">
+          <tr>
+            <th>Product Images</th>
+            <td><button class="greenButton" data-toggle="modal" data-target="#imageModal">View Product Images Here</button></td>
+          </tr>
+          <tr *ngFor="let item of productItems">
+            <th>{{item[0]}}</th>
+            <td>{{item[1]}}</td>
+          </tr>
+        </table>
+  </div>
+
+  <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Product Images</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item" *ngFor="let img of images;let i = index;" [ngClass]="{active: i==0}">
+                      <a class="d-block w-100" [href]="img" target="_blank"><img [src]="img" class="img-thumbnail"></a>
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <app-phototab [title]="title" *ngIf="tab=='Photos'"></app-phototab>
+
+  <div *ngIf="tab=='Shipping'">
+    <table class="table table-striped table-dark">
+      <tr *ngFor="let item of shippingItems">
+        <td>{{item[0]}}</td>
+        <td *ngIf="item[1]!='true'&&item[1]!='false'">{{item[1]}}</td>
+        <td *ngIf="item[1]=='true'"><i class="material-icons green">done</i></td>
+        <td *ngIf="item[1]=='false'"><i class="material-icons red">clear</i></td>
+      </tr>
+    </table>
+  </div>
+
+  <div *ngIf="tab=='Seller'">
+      <table class="table table-striped table-dark">
+        <tr *ngIf="sellerTitle!=undefined">
+          <th style="text-align:center" colspan="2">{{sellerTitle | uppercase}}</th>
+        </tr>
+        <tr *ngFor="let item of sellerItems">
+          <td>{{item[0]}}</td>
+          <!-- <td>{{item[1]}}</td> -->
+          <td *ngIf="item[0]=='Feedback Score'">{{item[1]}}</td>
+          <td *ngIf="item[0]=='Popularity'" style="padding-left:5px;">
+            <round-progress
+              [current]="item[1]"
+              [max]="100"
+              [color]="'green'"
+              [background]="'#eaeaea'"
+              [radius]="20"
+              [stroke]="2"
+              [rounded]="true"
+              [clockwise]="false"
+              [responsive]="false"
+              [duration]="800"
+              [animation]="'easeInOutQuart'"
+              [animationDelay]="0"></round-progress>
+              <p style="margin-top: -32px; margin-left: 3px;">{{item[1]}}</p>
+            
+          </td>
+          <td *ngIf="item[0]=='Feedback Rating Star'">
+            <i [class]="item[1]">{{item[2]}}</i>
+          </td>
+          <td *ngIf="item[0]=='Top Rated'">
+              <i *ngIf="item[1]=='true'" class="material-icons green">done</i>
+              <i *ngIf="item[1]=='false'" class="material-icons red">clear</i>
+          </td>
+          <td *ngIf="item[0]=='Store Name'">{{item[1]}}</td>
+          <td *ngIf="item[0]=='Buy Product At'">
+            <a class="greenButton" [href]="item[1]" target="_blank">store</a>
+          </td>
+        </tr>
+      </table>
+  </div>
+
+  
+
+  <app-similar [itemId]="itemId" *ngIf="tab=='Similar Products'"></app-similar>
+  
+
+
+  
+  
+</div>

@@ -1,0 +1,55 @@
+
+
+.dark-bg{
+    background-color: rgba(33, 36, 41);
+}
+
+.productImg{
+    width: 150px;
+    padding: 10px, 20px, 10px, 30px;
+}
+
+table {
+    width: 100%;
+}
+
+.item{
+    background-color: rgba(33, 36, 41);
+    margin-top: 20px;
+}
+
+.price{
+    color: darkseagreen;
+    margin: 0;
+}
+
+.shippingcost{
+    color: darkgoldenrod;
+    margin: 0;
+}
+
+.dayleft{
+    color: white;
+    margin: 0;
+}
+
+.green{
+    color: green;
+}
+
+.img-div{
+    margin-left: 20px;
+    margin-right: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.img-text{
+    margin-top: 10px;
+}
+
+.show{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}

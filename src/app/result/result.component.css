@@ -1,0 +1,40 @@
+.dark-bg{
+    background-color: rgba(33, 36, 41);
+    color: white;
+}
+
+.table-dark{
+    background-color: rgba(33, 36, 41);
+}
+
+.gold{
+    color: goldenrod;
+}
+
+.nav-pills .nav-link:not(.active) {
+    background-color: white;
+    color: black;
+}
+
+.nav-pills .nav-link {
+    background-color: rgba(33, 36, 41);
+    color: white;
+}
+
+.disable{
+    opacity: 0.4
+}
+
+
+.btn{
+    outline: none;
+    border: none;
+}
+
+/* td{
+    max-width: 300px;  
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+} */
+
